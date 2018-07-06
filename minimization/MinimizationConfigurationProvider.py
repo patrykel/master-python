@@ -23,7 +23,7 @@ def get_x0(hit_lines, geom_df, z_fixed=True):
 
     x = plane_info['x']
     y = plane_info['y']
-    z = plane_info['z']
+    z = 0.0                 # (as we translated) plane_info['z']
     dx = 0.009999749997
     dy = 0.009999749997
     dz = 0.9999

@@ -1,11 +1,8 @@
 import pandas as pd
 
-class DFProvider():
-    def get_geom_df(self):
-        return pd.read_csv('geom_df.csv')
 
-    def get_hits_df(self):
-        return pd.read_csv('single_df.csv')
+def get_df_from_csv(csv_filename):
+    return pd.read_csv(csv_filename)
 
 
 def get_iterable_event_group_list(hits_df):

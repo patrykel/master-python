@@ -8,10 +8,13 @@ LINE_SET = []
 # OBJECTIVE FUNCTION
 def objective(params):
     line = Line(params=params)
+    # print(len(LINE_SET))
+    # print([line.distance(other) for other in LINE_SET])
     return np.sum([line.distance(other) for other in LINE_SET])  # SUM OF DISTANCES
 
 
 def get_solution_track(hit_lines, geom_df):
+    global LINE_SET
     LINE_SET = hit_lines
 
     x0 = get_x0(hit_lines, geom_df, z_fixed=True)
@@ -23,11 +26,11 @@ def get_solution_track(hit_lines, geom_df):
         solution = minimize(objective, x0, method=method, constraints=constraints, bounds=bounds)
 
         if solution.success:
-            print("Success method: {}".format(method))
-            x = get_first_plane_parameter(hit_lines, geom_df, 'x')
-            y = get_first_plane_parameter(hit_lines, geom_df, 'y')
-            print("First det center: x = {}, y = {}".format(x, y))
-            print()
+            # print("Success method: {}".format(method))
+            # x = get_first_plane_parameter(hit_lines, geom_df, 'x')
+            # y = get_first_plane_parameter(hit_lines, geom_df, 'y')
+            # print("First det center: x = {}, y = {}".format(x, y))
+            # print()
             break
 
-    return solution
+    return solution, method
