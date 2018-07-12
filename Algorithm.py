@@ -11,7 +11,7 @@ row_dfs = []
 
 # Iteruj sie po event / group
 for event_id, group_id in get_iterable_event_group_list(hits_df):
-    if row > 20:
+    if row > 10:
         break
 
     print("row = {}\tev = {}\tgroup = {}".format(row, event_id, group_id))
@@ -22,8 +22,8 @@ for event_id, group_id in get_iterable_event_group_list(hits_df):
     row_dfs.append(row_df)
     row = row + 1
 
-result_df = pd.concat(row_dfs, ignore_index=True)
-print(result_df)
 
+print("Uncomment below to combine dataframes -- watch out for inconsistencies int det-id column names!!!")
+# result_df = pd.concat(row_dfs, ignore_index=True)
+# print(result_df)
 
-# GeomDF could be in a lazy provider --> to update

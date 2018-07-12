@@ -26,7 +26,7 @@ def get_x0(hit_lines, geom_df, z_fixed=True):
     z = 0.0                 # (as we translated) plane_info['z']
     dx = 0.009999749997
     dy = 0.009999749997
-    dz = 0.9999
+    dz = 0.9999 * np.sign(plane_info['z'])         # sign equals to z sign
 
     if z_fixed:
         return [x, y, dx, dy, dz]

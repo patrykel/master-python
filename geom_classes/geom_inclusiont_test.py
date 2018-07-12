@@ -1,3 +1,5 @@
+from geom_classes.Vector2D import Vector2D
+
 # by: https://stackoverflow.com/questions/2752725/finding-whether-a-point-lies-inside-a-rectangle-or-not/2763387#2763387
 def inside_rect(rect_points, P):
     '''

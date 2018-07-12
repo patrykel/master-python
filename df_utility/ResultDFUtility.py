@@ -78,14 +78,14 @@ def get_det_id_list(hit_lines):
     return [line.det_id for line in  hit_lines]
 
 
-def get_det_with_track_list(det_id_list, track, geom_df):
-    return [det_id for det_id in det_id_list if det_contains_track(det_id, track, geom_df)]
+def get_det_with_track_list(det_id_list, track_line, geom_df):
+    return [det_id for det_id in det_id_list if det_contains_track(det_id, track_line, geom_df)]
 
 
 def get_tracks_in_det_no(solution, hit_lines, geom_df):
-    track           = Line(params=solution.x)
+    track_line      = Line(params=solution.x)
     det_id_list     = get_det_id_list(hit_lines)
-    det_with_track  = get_det_with_track_list(det_id_list, track, geom_df)
+    det_with_track  = get_det_with_track_list(det_id_list, track_line, geom_df)
 
     return len(det_with_track)
 

@@ -27,7 +27,8 @@ class Line:
     def distance(self, other):
         n_vector = np.cross(self.line_vector(), other.line_vector())
         s_o_vector = np.array([self.x - other.x, self.y - other.y, self.z - other.z])
-        return np.linalg.norm(np.dot(n_vector, s_o_vector)) / np.linalg.norm(n_vector)
+        distance = np.linalg.norm(np.dot(n_vector, s_o_vector)) / np.linalg.norm(n_vector)
+        return distance
 
     def line_vector(self):
         return np.array([self.dx, self.dy, self.dz])
