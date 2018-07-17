@@ -1,6 +1,6 @@
 from geom_classes.Line import Line
 from geom_classes.GlobalZTranslation import GlobalZTranslation
-
+import numpy as np
 
 def get_current_hits_df(event_id, group_id, hits_df):
     return hits_df.loc[(hits_df['eventID'] == event_id) & (hits_df['groupID'] == group_id)]
@@ -41,6 +41,7 @@ def apply_transformations(hit_lines, translate_first_z_to_zero, in_mm):
 
         for line in hit_lines:
             line.z = line.z - GlobalZTranslation.FIRST_DET_Z_IN_MM
+            # line.z = line.z + np.sign(GlobalZTranslation.FIRST_DET_Z_IN_MM) * 1000
 
 
 def extract_hit_lines(hits_df, geom_df, eventID, groupID, translate_first_z_to_zero=True, in_mm=True):

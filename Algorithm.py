@@ -16,8 +16,8 @@ for event_id, group_id in get_iterable_event_group_list(hits_df):
 
     print("row = {}\tev = {}\tgroup = {}".format(row, event_id, group_id))
     hit_lines = extract_hit_lines(hits_df, geom_df, event_id, group_id, translate_first_z_to_zero=True, in_mm=True)
-    solution, method = get_solution_track(hit_lines, geom_df)
-    row_df = get_solution_df(event_id, group_id, method, solution, hit_lines, geom_df)
+    solution, method, exec_time = get_solution_track(hit_lines, geom_df)
+    row_df = get_solution_df(event_id, group_id, method, exec_time, solution, hit_lines, geom_df)
 
     row_dfs.append(row_df)
     row = row + 1

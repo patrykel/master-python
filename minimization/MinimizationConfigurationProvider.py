@@ -23,7 +23,7 @@ def get_x0(hit_lines, geom_df, z_fixed=True):
 
     x = plane_info['x']
     y = plane_info['y']
-    z = 0.0                 # (as we translated) plane_info['z']
+    z = 0.0                                         # 1000.0 * np.sign(plane_info['z'])  watch out for bounds...
     dx = 0.009999749997
     dy = 0.009999749997
     dz = 0.9999 * np.sign(plane_info['z'])         # sign equals to z sign
@@ -55,7 +55,7 @@ def get_y_bound(hit_lines, geom_df):
 def get_bounds(seed_solution, hit_lines, geom_df):
     b_x = get_x_bound(hit_lines, geom_df)  # det_center.x +/- RPSilicon.A * sqrt(2)
     b_y = get_y_bound(hit_lines, geom_df)  # det_center.y +/- RPSilicon.A * sqrt(2)
-    b_z = (-1.0, 1.0)
+    b_z = (-1000.0, 1000.0)
     b_dir = (-1.0, 1.0)
 
 
