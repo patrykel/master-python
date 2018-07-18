@@ -11,19 +11,19 @@ row_dfs = []
 
 # Iteruj sie po event / group
 for event_id, group_id in get_iterable_event_group_list(hits_df):
-    if row > 10:
+    if row > 20:
         break
 
     print("row = {}\tev = {}\tgroup = {}".format(row, event_id, group_id))
     hit_lines = extract_hit_lines(hits_df, geom_df, event_id, group_id, translate_first_z_to_zero=True, in_mm=True)
     solution, method, exec_time = get_solution_track(hit_lines, geom_df)
-    row_df = get_solution_df(event_id, group_id, method, exec_time, solution, hit_lines, geom_df)
+    row_df = get_solution_df(event_id, group_id, method, exec_time, solution, hit_lines, geom_df, with_det_distances=False)
 
     row_dfs.append(row_df)
     row = row + 1
 
 
 print("Uncomment below to combine dataframes -- watch out for inconsistencies int det-id column names!!!")
-# result_df = pd.concat(row_dfs, ignore_index=True)
-# print(result_df)
+result_df = pd.concat(row_dfs, ignore_index=True)
+print(result_df)
 

@@ -2,6 +2,7 @@ from geom_classes.Point2D import Point2D
 from geom_classes.Direction2D import Direction
 from geom_classes.RPSilicon import RPSilicon
 from geom_classes.GlobalZTranslation import GlobalZTranslation
+import numpy as np
 
 
 # GETTING RP SILICON INSTANCE
@@ -26,17 +27,31 @@ def get_rp_silicon(det_id, geom_df):
 
 
 # GETTING POINT WHERE SILICON WAS HIT BY TRACK
-
-
-def get_delta_z_to_first_plane(det_id, geom_df):
+def get_det_z_translated(det_id, geom_df):
     plane_info = get_plane_info(det_id, geom_df)
-    return plane_info['z'] * 1000 - GlobalZTranslation.FIRST_DET_Z_IN_MM
-
+    return plane_info['z'] * 1000 - GlobalZTranslation.FIRST_DET_Z_IN_MM + \
+           GlobalZTranslation.TRANSLATION_FROM_0_MM * np.sign(GlobalZTranslation.FIRST_DET_Z_IN_MM)
 
 def get_track_silicon_hit_point(det_id, track_line, geom_df):
-    delta_z_to_first_plane = get_delta_z_to_first_plane(det_id, geom_df)
+    '''
+    Want to get point in which track is going through detector plane.
 
-    k = delta_z_to_first_plane / track_line.dz
+    :param det_id:
+    :param track_line:
+        x, y, z, dx, dy, dz
+
+        0 < x << 1
+        0 < y << 1
+        0 = z
+        0 <     dx  << 1
+        0 <     dy  << 1
+        0 <<    dz  <  1
+    :param geom_df:
+    :return:
+    '''
+
+    det_z_translated = get_det_z_translated(det_id, geom_df)
+    k = det_z_translated / track_line.dz
 
     p = Point2D()
     p.x = track_line.x + k * track_line.dx

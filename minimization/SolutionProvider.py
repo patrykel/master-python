@@ -6,23 +6,14 @@ import time
 
 LINE_SET = []
 
+
 # OBJECTIVE FUNCTION
 def objective(params):
-    line = Line(params=params)
+    x, y, dx, dy, dz = params
+    x = x  # * 10.0
+    y = y  # * 10.0
+    line = Line(x=x, y=y, dx=dx, dy=dy, dz=dz)
     return np.sum([line.distance(other) for other in LINE_SET])  # SUM OF DISTANCES
-
-
-def get_bounds_for_least_squares(minimize_like_bounds):
-    lower_bounds = []
-    upper_bounds = []
-
-    for bound in minimize_like_bounds:
-        lower_bounds.append(bound[0])
-        upper_bounds.append(bound[1])
-
-    bounds = (lower_bounds, upper_bounds)
-
-    return bounds
 
 
 def get_by_least_squares(x0, minimize_like_bounds):
@@ -32,6 +23,9 @@ def get_by_least_squares(x0, minimize_like_bounds):
 
     start_time = time.time()
     solution = least_squares(objective, x0, bounds=bounds, jac='2-point', method='trf')
+                             # gtol=1e-10, xtol=1e-10, ftol=1e-10)
+    # solution = least_squares(objective, x0, jac='2-point', method='lm',
+    #                          gtol=1e-10, xtol=1e-10, ftol=1e-10)
     exec_time = time.time() - start_time
 
     return solution, method, exec_time

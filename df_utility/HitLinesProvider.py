@@ -41,6 +41,7 @@ def apply_transformations(hit_lines, translate_first_z_to_zero, in_mm):
 
         for line in hit_lines:
             line.z = line.z - GlobalZTranslation.FIRST_DET_Z_IN_MM
+            line.z = line.z + GlobalZTranslation.TRANSLATION_FROM_0_MM * np.sign(GlobalZTranslation.FIRST_DET_Z_IN_MM)
             # line.z = line.z + np.sign(GlobalZTranslation.FIRST_DET_Z_IN_MM) * 1000
 
 
