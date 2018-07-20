@@ -1,11 +1,11 @@
 from df_utility.ResultDFUtility import *
-from geom_classes.GlobalZTranslation import *
+from geom_classes.Constants import *
 import pandas as pd
 
 
 def get_column_names(hit_lines, with_det_distances=True):
 
-    track_data_columns = ['Translate', 'Event', 'Group', 'Method', 'Exec time', 'DistSum', 'MDH', 'Success', 'Chi', 'ChiN',
+    track_data_columns = ['Translate', 'Event', 'Group', 'Method', 'TIME', 'DistSum', 'MDH', 'Success', 'Chi', 'ChiN',
                         'x', 'y', 'z', 'dx', 'dy', 'dz',
                         'dx2+dy2+dz2', 'dx/dz angle [mili rad]', 'dy/dz angle [mili rad]',
                         'track_in_dets', 'track_out_dets']
@@ -43,13 +43,15 @@ def get_solution_df(event_id, group_id, method, exec_time, solution, hit_lines, 
     chi2                = get_chi2(solution, hit_lines)
     chi2_N              = get_chi2_N(solution, hit_lines)
     x, y, z, dx, dy, dz = get_track_params(solution)
+    x = x / Constants.K_X
+    y = y / Constants.K_Y
     dx_dz_angle         = get_mili_rad_angle(dx, dz)
     dy_dz_angle         = get_mili_rad_angle(dy, dz)
     tracks_in_det_no    = get_tracks_in_det_no(solution, hit_lines, geom_df)
     tracks_out_det_no   = len(hit_lines) - tracks_in_det_no
 
 
-    track_data              = [GlobalZTranslation.TRANSLATION_FROM_0_MM,
+    track_data              = [Constants.TRANSLATION,
                                event_id, group, method, exec_time, dist_sum, dist_max, solution.success, chi2, chi2_N,
                                x, y, z,
                                "{:.10f}".format(dx), "{:.10f}".format(dy), "{:.10f}".format(dz),

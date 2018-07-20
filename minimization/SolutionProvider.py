@@ -2,6 +2,7 @@ from scipy.optimize import minimize     # MINIMIZATION
 from scipy.optimize import least_squares
 from minimization.MinimizationConfigurationProvider import *
 from geom_classes.Line import Line
+from geom_classes.Constants import *
 import time
 
 LINE_SET = []
@@ -10,8 +11,8 @@ LINE_SET = []
 # OBJECTIVE FUNCTION
 def objective(params):
     x, y, dx, dy, dz = params
-    x = x  # * 10.0
-    y = y  # * 10.0
+    x = x * Constants.K_X # * 10.0
+    y = y * Constants.K_Y # * 10.0
     line = Line(x=x, y=y, dx=dx, dy=dy, dz=dz)
     return np.sum([line.distance(other) for other in LINE_SET])  # SUM OF DISTANCES
 

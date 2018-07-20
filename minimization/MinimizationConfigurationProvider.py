@@ -1,4 +1,4 @@
-from geom_classes.GlobalZTranslation import *
+from geom_classes.Constants import *
 import numpy as np
 
 RP_SILICON_SIDE = 36.07                                         # side length of plane detector [mm]
@@ -22,8 +22,8 @@ def get_first_plane_parameter(hit_lines, geom_df, parameter='x'):
 def get_x0(hit_lines, geom_df, z_fixed=True):
     plane_info = get_first_plane_info(hit_lines, geom_df)
 
-    x = 0.0     # plane_info['x']
-    y = 0.0     # plane_info['y']
+    x = 0.0   # plane_info['x']
+    y = 0.0   # plane_info['y']
     z = 0.0
         # GlobalZTranslation.TRANSLATION_FROM_0_MM * np.sign(plane_info['z'])
         # 0.0 # 1000.0 * np.sign(plane_info['z'])  watch out for bounds...
