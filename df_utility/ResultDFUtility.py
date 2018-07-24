@@ -62,7 +62,7 @@ def get_track_params(solution):
     elif len(solution.x) == 6:
         x, y, z, dx, dy, dz = solution.x
 
-    if (dx ** 2 + dy ** 2 + dz ** 2 - 1.0 > ZERO_THRESHOLD):
+    if abs(dx ** 2 + dy ** 2 + dz ** 2 - 1.0) > ZERO_THRESHOLD:
         dx, dy, dz = normalize(dx, dy, dz)
 
     return [x, y, z, dx, dy, dz]
