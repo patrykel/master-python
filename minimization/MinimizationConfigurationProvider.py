@@ -1,3 +1,4 @@
+from geom_classes.Constants import *
 import numpy as np
 
 RP_SILICON_SIDE = 36.07                                         # side length of plane detector [mm]
@@ -21,9 +22,11 @@ def get_first_plane_parameter(hit_lines, geom_df, parameter='x'):
 def get_x0(hit_lines, geom_df, z_fixed=True):
     plane_info = get_first_plane_info(hit_lines, geom_df)
 
-    x = plane_info['x']
-    y = plane_info['y']
-    z = 0.0                                         # 1000.0 * np.sign(plane_info['z'])  watch out for bounds...
+    x = 0.0   # plane_info['x']
+    y = 0.0   # plane_info['y']
+    z = 0.0
+        # GlobalZTranslation.TRANSLATION_FROM_0_MM * np.sign(plane_info['z'])
+        # 0.0 # 1000.0 * np.sign(plane_info['z'])  watch out for bounds...
     dx = 0.009999749997
     dy = 0.009999749997
     dz = 0.9999 * np.sign(plane_info['z'])         # sign equals to z sign
@@ -53,8 +56,8 @@ def get_y_bound(hit_lines, geom_df):
 
 
 def get_bounds(seed_solution, hit_lines, geom_df):
-    b_x = get_x_bound(hit_lines, geom_df)  # det_center.x +/- RPSilicon.A * sqrt(2)
-    b_y = get_y_bound(hit_lines, geom_df)  # det_center.y +/- RPSilicon.A * sqrt(2)
+    b_x = (-100.0, 100.0) # get_x_bound(hit_lines, geom_df)  # det_center.x +/- RPSilicon.A * sqrt(2)
+    b_y = (-100.0, 100.0) # get_y_bound(hit_lines, geom_df)  # det_center.y +/- RPSilicon.A * sqrt(2)
     b_z = (-1000.0, 1000.0)
     b_dir = (-1.0, 1.0)
 
@@ -65,6 +68,20 @@ def get_bounds(seed_solution, hit_lines, geom_df):
         result = [b_x, b_y, b_dir, b_dir, b_dir]
 
     return result
+
+
+def get_bounds_for_least_squares(minimize_like_bounds):
+    lower_bounds = []
+    upper_bounds = []
+
+    for bound in minimize_like_bounds:
+        lower_bounds.append(bound[0])
+        upper_bounds.append(bound[1])
+
+    bounds = (lower_bounds, upper_bounds)
+
+    return bounds
+
 
 def get_optimizing_methods():
     return ['SLSQP', 'Nelder-Mead', 'Powell']

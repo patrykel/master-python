@@ -1,5 +1,5 @@
 from geom_classes.Line import Line
-from geom_classes.GlobalZTranslation import GlobalZTranslation
+from geom_classes.Constants import Constants
 import numpy as np
 
 def get_current_hits_df(event_id, group_id, hits_df):
@@ -37,10 +37,11 @@ def apply_transformations(hit_lines, translate_first_z_to_zero, in_mm):
             line.z = line.z * 1000
 
     if translate_first_z_to_zero:
-        GlobalZTranslation.FIRST_DET_Z_IN_MM = min([line.z for line in hit_lines], key=abs)
+        Constants.FIRST_Z_MM = min([line.z for line in hit_lines], key=abs)
 
         for line in hit_lines:
-            line.z = line.z - GlobalZTranslation.FIRST_DET_Z_IN_MM
+            line.z = line.z - Constants.FIRST_Z_MM
+            line.z = line.z + Constants.TRANSLATION * np.sign(Constants.FIRST_Z_MM)
             # line.z = line.z + np.sign(GlobalZTranslation.FIRST_DET_Z_IN_MM) * 1000
 
 
