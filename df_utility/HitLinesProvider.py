@@ -3,6 +3,7 @@ from geom_classes.Constants import Constants
 import numpy as np
 
 def get_current_hits_df(event_id, group_id, hits_df):
+    # TO DO: CACHE FOR CURRENT HITS :)
     return hits_df.loc[(hits_df['eventID'] == event_id) & (hits_df['groupID'] == group_id)]
 
 
