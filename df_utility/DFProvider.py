@@ -22,3 +22,6 @@ def get_iterable_event_group_list(hits_df):
         event_group_list.append(tuple([eventID, groupID]))
 
     return event_group_list
+
+rp_df = get_df_from_csv("rp_geom_df.csv")
+avg_det_df = get_df_from_csv("avg_det_geom_df.csv")

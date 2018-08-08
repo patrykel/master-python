@@ -1,0 +1,47 @@
+1. PRINT GEOMETRY
+
+    [plawski@lxplus061 cmssw_7_0_4_src]$ cd Geometry/TotemRPGeometryBuilder/
+    [plawski@lxplus061 TotemRPGeometryBuilder]$ cmsRun python/GeometryInfo_cfg.py
+
+2. PRINTING LINES
+
+        %MSG-i Demo:  RecoLoggingAnalyzer:recoLogger 21-Jul-2018 23:54:58 CEST  Run: 992000000 Event: 9773
+    RP = 125	 arm = 1	 rpIdx =
+    U/V Intersections from planes:	1	0
+        uLineNo	vLineNo		x		y		z
+        0	0		0.07142678	 -9.754084	   219.982
+        0	0		 0.2115117	 -9.893971	   219.982
+
+        1	0		-0.6756936	  -10.5012	   219.982
+        1	0		-0.5356087	 -10.64109	   219.982
+
+    uLines:	2
+        [ uline[0] ] 	a: -0.0002584501 [rad]	b: 6.829556 [mm]	w: 4.987581
+             Related hits number: 5
+            [ hit [0] ] 	RPDetId: 125	SiliconId: 1	position (wrt to det center): -8.2355 [mm]	sigma (uncertainty) 0.0191
+            [ hit [1] ] 	RPDetId: 125	SiliconId: 3	position (wrt to det center): -8.3015 [mm]	sigma (uncertainty) 0.0191
+            [ hit [2] ] 	RPDetId: 125	SiliconId: 5	position (wrt to det center): -8.3015 [mm]	sigma (uncertainty) 0.0191
+            [ hit [3] ] 	RPDetId: 125	SiliconId: 7	position (wrt to det center): -8.3675 [mm]	sigma (uncertainty) 0.0191
+            [ hit [4] ] 	RPDetId: 125	SiliconId: 9	position (wrt to det center): -8.3675 [mm]	sigma (uncertainty) 0.0191
+        [ uline[1] ] 	a: 0.1276252 [rad]	b: 9.87845 [mm]	w: 4.987581
+             Related hits number: 5
+            [ hit [0] ] 	RPDetId: 125	SiliconId: 1	position (wrt to det center): -7.1795 [mm]	sigma (uncertainty) 0.0191
+            [ hit [1] ] 	RPDetId: 125	SiliconId: 3	position (wrt to det center): -6.1235 [mm]	sigma (uncertainty) 0.0191
+            [ hit [2] ] 	RPDetId: 125	SiliconId: 5	position (wrt to det center): -5.0015 [mm]	sigma (uncertainty) 0.0191
+            [ hit [3] ] 	RPDetId: 125	SiliconId: 7	position (wrt to det center): -3.8135 [mm]	sigma (uncertainty) 0.0191
+            [ hit [4] ] 	RPDetId: 125	SiliconId: 9	position (wrt to det center): -2.6915 [mm]	sigma (uncertainty) 0.0191
+    vLines:	2
+        [ vline[0] ] 	a: -0.03894559 [rad]	b: 6.165847 [mm]	w: 5.985097
+             Related hits number: 6
+            [ hit [0] ] 	RPDetId: 125	SiliconId: 0	position (wrt to det center): -7.1135 [mm]	sigma (uncertainty) 0.0191
+            [ hit [1] ] 	RPDetId: 125	SiliconId: 2	position (wrt to det center): -7.5095 [mm]	sigma (uncertainty) 0.0191
+            [ hit [2] ] 	RPDetId: 125	SiliconId: 4	position (wrt to det center): -7.9055 [mm]	sigma (uncertainty) 0.0191
+            [ hit [3] ] 	RPDetId: 125	SiliconId: 6	position (wrt to det center): -8.1695 [mm]	sigma (uncertainty) 0.0191
+            [ hit [4] ] 	RPDetId: 125	SiliconId: 8	position (wrt to det center): -8.5655 [mm]	sigma (uncertainty) 0.0191
+            [ hit [5] ] 	RPDetId: 125	SiliconId: 0	position (wrt to det center): -6.9155 [mm]	sigma (uncertainty) 0.0191
+        [ vline[1] ] 	a: -0.0008437704 [rad]	b: 7.138004 [mm]	w: 3.990065
+             Related hits number: 4
+            [ hit [0] ] 	RPDetId: 125	SiliconId: 2	position (wrt to det center): -6.9155 [mm]	sigma (uncertainty) 0.0191
+            [ hit [1] ] 	RPDetId: 125	SiliconId: 4	position (wrt to det center): -6.9815 [mm]	sigma (uncertainty) 0.0191
+            [ hit [2] ] 	RPDetId: 125	SiliconId: 6	position (wrt to det center): -6.9815 [mm]	sigma (uncertainty) 0.0191
+            [ hit [3] ] 	RPDetId: 125	SiliconId: 8	position (wrt to det center): -6.9815 [mm]	sigma (uncertainty) 0.0191
