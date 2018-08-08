@@ -45,3 +45,22 @@
             [ hit [1] ] 	RPDetId: 125	SiliconId: 4	position (wrt to det center): -6.9815 [mm]	sigma (uncertainty) 0.0191
             [ hit [2] ] 	RPDetId: 125	SiliconId: 6	position (wrt to det center): -6.9815 [mm]	sigma (uncertainty) 0.0191
             [ hit [3] ] 	RPDetId: 125	SiliconId: 8	position (wrt to det center): -6.9815 [mm]	sigma (uncertainty) 0.0191
+
+3. Hansa coordinate system:
+    - Uz center:
+        - x = AvgOddDet.x
+        - y = AvgOddDet.y
+        - z = RP.z
+    - Vz center:
+        - x = AvgEvenDet.x
+        - y = AvgEvenDet.y
+        - z = RP.z
+
+       \         /
+        \       B
+         A     .
+          .   .
+           . .
+            C
+
+    - To get C we will use: https://math.stackexchange.com/questions/406864/intersection-of-two-lines-in-vector-form
