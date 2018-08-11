@@ -64,3 +64,10 @@
             C
 
     - To get C we will use: https://math.stackexchange.com/questions/406864/intersection-of-two-lines-in-vector-form
+
+4. Github solution for permission denied:
+
+    https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/#adding-your-ssh-key-to-the-ssh-agent
+
+    eval "$(ssh-agent -s)"
+    ssh-add -K ~/.ssh/id_rsa
