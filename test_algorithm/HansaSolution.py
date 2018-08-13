@@ -82,7 +82,7 @@ def get_dz(z0):
 
 def get_b1(a, b0, z0):
     dz = get_dz(z0)
-    b1 = a * dz + b0
+    b1 = a * dz + b0   # tu może być błąd bo to moje a jest w [u_rad] --> to należy naprawić, ale będą jaja
     return b1
 
 

@@ -1,7 +1,9 @@
 import numpy as np
 
+
 class Line:
-    def __init__(self, x=0, y=0, z=0, dx=0, dy=0, dz=0, point=[], direction=[], params=[], det_id=0):
+    def __init__(self, x=0, y=0, z=0, dx=0, dy=0, dz=0, point=[], direction=[], params=[], det_id=0,
+                 start=None, end=None):
         if len(params) == 6:
             self.x, self.y, self.z = params[:3]
             self.dx, self.dy, self.dz = params[3:]
@@ -12,6 +14,9 @@ class Line:
         elif len(point) == 3 and len(direction) == 3:
             self.x, self.y, self.z = point
             self.dx, self.dy, self.dz = direction
+        elif start is not None and end is not None:
+            self.x, self.y, self.z = start.x, start.y, start.z
+            self.dx, self.dy, self.dz = self.normalized_vector(start, end)
         else:
             self.x, self.y, self.z = x, y, z
             self.dx, self.dy, self.dz = dx, dy, dz
@@ -35,3 +40,16 @@ class Line:
 
     def y_on_x(self, x):
         return (x - self.x) / self.dx * self.dy + self.y
+
+
+    def normalized_vector(self, start, end):
+        vector_dx = end.x - start.x
+        vector_dy = end.y - start.y
+        vector_dz = end.z - start.z
+
+        return self.normalize(vector_dx, vector_dy, vector_dz)
+
+
+    def normalize(self, dx, dy, dz):
+        v = np.array([dx, dy, dz])
+        return v / np.linalg.norm(v)
