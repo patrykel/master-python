@@ -58,7 +58,7 @@ class CoordinateSystemSkeleton():
         self.compute_b_uv_1()
         self.compute_pt0()
         self.compute_pt1()
-        
+
 
     def setup_lines(self, rp_id, rp_hits_df):
         u_direction_row_df = rp_hits_df.loc[rp_hits_df['siliconID'] % 2 == DIRECTION_PARITY[U_DIRECTION]].iloc[0]
@@ -97,8 +97,9 @@ class CoordinateSystemSkeleton():
         v_det_avg_df = det_avg_geom_df.loc[(det_avg_geom_df['rpId'] == rp_id) &
                                            (det_avg_geom_df['direction'] == V_DIRECTION)].iloc[0]
 
-        self.u_c0 = Point3D(u_det_avg_df['x'], u_det_avg_df['y'], u_det_avg_df['z'])
-        self.v_c0 = Point3D(v_det_avg_df['x'], v_det_avg_df['y'], v_det_avg_df['z'])
+        # Z coordinate should be the same as in c0
+        self.u_c0 = Point3D(u_det_avg_df['x'], u_det_avg_df['y'], self.rp_z)
+        self.v_c0 = Point3D(v_det_avg_df['x'], v_det_avg_df['y'], self.rp_z)
 
 
     def compute_c0(self):
@@ -154,11 +155,11 @@ class CoordinateSystemSkeleton():
         self.b_v0 = self.line_v_b + (self.v_c0.x - self.c0.x) / self.v_dx
 
     def compute_b_uv_1(self):
-        # b_u1 - distance between C1 and point on U axis on Uz1 plane, 
+        # b_u1 - distance between C1 and point on U axis on Uz1 plane,
         # b_v1 - distance between C1 and point on V axis on Vz1 plane
 
-        self.b_u1 = self.b_u0 + math.tan(self.line_u_a) * 1 # tangens - real a
-        self.b_v1 = self.b_v0 + math.tan(self.line_v_a) * 1 # tangens
+        self.b_u1 = self.b_u0 + math.tan(self.line_u_a) * 1 # tangens while a is in [rad]
+        self.b_v1 = self.b_v0 + math.tan(self.line_v_a) * 1 # check if angle is appropriate :)
 
     def compute_pt0(self):
         pt0_x = self.c0.x + self.b_u0 * self.u_dx + self.b_v0 * self.v_dx
