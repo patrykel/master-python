@@ -10,7 +10,7 @@ geom_df = get_df_from_csv("geom_df.csv")
 hits_df = get_df_from_csv("single_20k_abw_df.csv")
 iterable_event_group_list = get_iterable_event_group_list(hits_df)
 
-N_row_limit = 10
+N_row_limit = 500
 
 Constants.K_X = 1
 Constants.K_Y = 1

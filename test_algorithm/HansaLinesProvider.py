@@ -1,8 +1,8 @@
 import pandas as pd
 
 from geom_classes.Line import *
-from test_algorithm.CoordinateSystemSkeleton import *
-
+# from test_algorithm.CoordinateSystemSkeleton import *
+from uv_coordinate_system.UVCoordinateSystemSkeleton import *
 
 class HansaLinesProvider():
 
@@ -10,7 +10,8 @@ class HansaLinesProvider():
         self.hits_df = hits_df
         self.det_avg_geom_df = pd.DataFrame.from_csv(avg_geom_filename)
         self.rp_geom_df = pd.DataFrame.from_csv(rp_geom_filename)
-        self.cs_skeleton = CoordinateSystemSkeleton()
+        self.uv_skeleton = UVCoordinateSystemSkeleton()
+        # self.cs_skeleton = CoordinateSystemSkeleton()
 
     def compute_lines(self, event_id, group_id):
         hansa_lines = []
@@ -24,9 +25,13 @@ class HansaLinesProvider():
         return hansa_lines
 
     def compute_line(self, rp_id, rp_hits_df):
-        self.cs_skeleton.setup(rp_id, rp_hits_df, self.det_avg_geom_df, self.rp_geom_df)
-        pt0 = self.cs_skeleton.get_pt0()
-        pt1 = self.cs_skeleton.get_pt1()
+        # self.cs_skeleton.setup(rp_id, rp_hits_df, self.det_avg_geom_df, self.rp_geom_df)
+        # pt0 = self.cs_skeleton.get_pt0()
+        # pt1 = self.cs_skeleton.get_pt1()
+
+        self.uv_skeleton.setup(rp_id, rp_hits_df, self.det_avg_geom_df, self.rp_geom_df)
+        pt0 = self.uv_skeleton.get_pt0()
+        pt1 = self.uv_skeleton.get_pt1()
 
         return Line(start=pt0, end=pt1)
 
